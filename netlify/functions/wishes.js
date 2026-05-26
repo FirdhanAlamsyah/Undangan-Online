@@ -1,4 +1,4 @@
-const { getStore } = require("@netlify/blobs");
+import { getStore } from "@netlify/blobs";
 
 const STORE_NAME = "ira-yusup-wishes";
 const WISHES_KEY = "wishes.json";
@@ -6,15 +6,13 @@ const MAX_WISHES = 500;
 const MAX_NAME_LENGTH = 80;
 const MAX_MESSAGE_LENGTH = 600;
 
-function json(body, statusCode = 200) {
-  return {
-    statusCode,
+function json(body, status = 200) {
+  return Response.json(body, {
+    status,
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "no-store",
     },
-    body: JSON.stringify(body),
-  };
+  });
 }
 
 function cleanText(value, maxLength) {
@@ -32,33 +30,36 @@ function formatTime(date = new Date()) {
   }).format(date);
 }
 
-async function getWishesStore() {
-  return getStore(STORE_NAME);
+function getWishesStore() {
+  return getStore({ name: STORE_NAME, consistency: "strong" });
 }
 
 async function readWishes(store) {
-  const stored = await store.get(WISHES_KEY, { type: "json", consistency: "strong" });
+  const stored = await store.get(WISHES_KEY, {
+    type: "json",
+    consistency: "strong",
+  });
   return Array.isArray(stored) ? stored : [];
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === "OPTIONS") {
+export default async (request) => {
+  if (request.method === "OPTIONS") {
     return json({});
   }
 
   try {
-    const store = await getWishesStore();
+    const store = getWishesStore();
 
-    if (event.httpMethod === "GET") {
+    if (request.method === "GET") {
       const wishes = await readWishes(store);
       return json({ wishes });
     }
 
-    if (event.httpMethod !== "POST") {
+    if (request.method !== "POST") {
       return json({ error: "Method not allowed" }, 405);
     }
 
-    const payload = JSON.parse(event.body || "{}");
+    const payload = await request.json().catch(() => ({}));
     const name = cleanText(payload.name, MAX_NAME_LENGTH);
     const message = cleanText(payload.message, MAX_MESSAGE_LENGTH);
 
@@ -81,6 +82,12 @@ exports.handler = async (event) => {
     return json({ wish, wishes: nextWishes }, 201);
   } catch (error) {
     console.error(error);
-    return json({ error: "Ucapan belum bisa diproses." }, 500);
+    return json(
+      {
+        error: "Ucapan belum bisa diproses.",
+        detail: error instanceof Error ? error.message : String(error),
+      },
+      500
+    );
   }
 };
