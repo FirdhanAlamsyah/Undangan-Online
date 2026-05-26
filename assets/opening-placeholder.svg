@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 844" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffaf4"/>
+      <stop offset=".62" stop-color="#fbf1e6"/>
+      <stop offset="1" stop-color="#f5e1dc"/>
+    </linearGradient>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .1"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="430" height="844" fill="url(#bg)"/>
+  <rect width="430" height="844" filter="url(#paper)"/>
+  <g opacity=".38" fill="none" stroke="#d4af67" stroke-width="1.4">
+    <path d="M42 66c62 44 122 43 180-3s113-40 166 7"/>
+    <path d="M42 782c62-44 122-43 180 3s113 40 166-7"/>
+    <path d="M42 66c14 42 42 62 84 58"/>
+    <path d="M388 66c-14 42-42 62-84 58"/>
+    <path d="M42 782c14-42 42-62 84-58"/>
+    <path d="M388 782c-14-42-42-62-84-58"/>
+  </g>
+  <g opacity=".34">
+    <circle cx="62" cy="148" r="28" fill="#e9b4bd"/>
+    <circle cx="368" cy="148" r="28" fill="#e9b4bd"/>
+    <circle cx="62" cy="704" r="28" fill="#e9b4bd"/>
+    <circle cx="368" cy="704" r="28" fill="#e9b4bd"/>
+    <path d="M78 126c28-48 62-70 102-66-30 36-64 58-102 66z" fill="#d6b46f"/>
+    <path d="M352 126c-28-48-62-70-102-66 30 36 64 58 102 66z" fill="#d6b46f"/>
+    <path d="M78 726c28 48 62 70 102 66-30-36-64-58-102-66z" fill="#d6b46f"/>
+    <path d="M352 726c-28 48-62 70-102 66 30-36 64-58 102-66z" fill="#d6b46f"/>
+  </g>
+  <g opacity=".18" fill="#caa66b">
+    <path d="M68 538c88-52 186-52 294 0-93 36-191 36-294 0z"/>
+  </g>
+</svg>

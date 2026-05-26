@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbf5ed" />
+    <title>Generator Link Undangan Ira & Yusup</title>
+    <style>
+      :root {
+        --ivory: #fbf5ed;
+        --paper: #fffaf3;
+        --ink: #4f3d36;
+        --muted: #8b7469;
+        --gold: #b78b4f;
+        --green: #6d9068;
+        --shadow: rgba(86, 57, 42, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        color: var(--ink);
+        background:
+          linear-gradient(rgba(255, 246, 236, 0.72), rgba(255, 246, 236, 0.72)),
+          url("../../assets/background-desktop.png");
+        background-color: var(--ivory);
+        background-position: center;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+      }
+
+      main {
+        width: min(100%, 460px);
+        padding: 24px;
+        border: 1px solid rgba(183, 139, 79, 0.26);
+        border-radius: 14px;
+        background: rgba(255, 250, 243, 0.94);
+        box-shadow: 0 22px 70px var(--shadow);
+        backdrop-filter: blur(5px);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+        line-height: 1.12;
+      }
+
+      p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 14px;
+        color: #675249;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(183, 139, 79, 0.36);
+        border-radius: 10px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.86);
+        font: 15px/1.4 Arial, sans-serif;
+        outline: none;
+      }
+
+      input {
+        height: 46px;
+        padding: 0 13px;
+      }
+
+      textarea {
+        min-height: 116px;
+        resize: vertical;
+        padding: 12px 13px;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: rgba(151, 107, 51, 0.82);
+        box-shadow: 0 0 0 3px rgba(183, 139, 79, 0.16);
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      button,
+      a {
+        display: inline-grid;
+        min-height: 44px;
+        place-items: center;
+        border: 0;
+        border-radius: 999px;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font: 700 13px/1 Arial, sans-serif;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        background: linear-gradient(180deg, #a98762, #765847);
+      }
+
+      a {
+        background: linear-gradient(180deg, #7ea274, #5f865f);
+      }
+
+      .secondary {
+        background: linear-gradient(180deg, #9e9088, #756861);
+      }
+
+      .status {
+        min-height: 18px;
+        margin: 13px 0 0;
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      @media (max-width: 420px) {
+        body {
+          padding: 16px;
+        }
+
+        main {
+          padding: 20px;
+        }
+
+        .actions {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Generator Link Undangan</h1>
+      <p>Tulis nama tamu, lalu salin link atau teks WhatsApp yang sudah siap dikirim.</p>
+
+      <label>
+        Nama tamu
+        <input id="guestName" type="text" placeholder="Contoh: Bapak Asep" autocomplete="name" />
+      </label>
+
+      <label>
+        Link undangan
+        <input id="inviteLink" type="text" readonly />
+      </label>
+
+      <label>
+        Teks WhatsApp
+        <textarea id="messageText" readonly></textarea>
+      </label>
+
+      <div class="actions">
+        <button id="copyLink" type="button">Copy Link</button>
+        <button id="copyMessage" class="secondary" type="button">Copy Teks</button>
+        <a id="openWhatsApp" href="#" target="_blank" rel="noreferrer">Buka WhatsApp</a>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+      const guestInput = document.querySelector("#guestName");
+      const inviteLinkInput = document.querySelector("#inviteLink");
+      const messageTextInput = document.querySelector("#messageText");
+      const copyLinkButton = document.querySelector("#copyLink");
+      const copyMessageButton = document.querySelector("#copyMessage");
+      const openWhatsAppLink = document.querySelector("#openWhatsApp");
+      const statusNode = document.querySelector("#status");
+
+      function getBaseInviteUrl() {
+        return `${window.location.origin}/`;
+      }
+
+      function getGuestName() {
+        return guestInput.value.trim() || "Bapak/Ibu/Saudara/i";
+      }
+
+      function buildInviteLink() {
+        const url = new URL(getBaseInviteUrl());
+        url.searchParams.set("to", getGuestName());
+        return url.toString();
+      }
+
+      function buildMessage(link) {
+        return [
+          "Assalamu'alaikum Wr. Wb.",
+          "",
+          `Kepada Yth. ${getGuestName()}`,
+          "",
+          "Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada pernikahan Ira & Yusup.",
+          "",
+          `Buka undangan: ${link}`,
+          "",
+          "Terima kasih.",
+        ].join("\n");
+      }
+
+      function updateOutput() {
+        const link = buildInviteLink();
+        const message = buildMessage(link);
+        inviteLinkInput.value = link;
+        messageTextInput.value = message;
+        openWhatsAppLink.href = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      }
+
+      function copyText(value, label) {
+        navigator.clipboard
+          .writeText(value)
+          .then(() => {
+            statusNode.textContent = `${label} berhasil disalin.`;
+          })
+          .catch(() => {
+            statusNode.textContent = "Gagal copy otomatis. Salin manual dari kolom di atas.";
+          });
+      }
+
+      guestInput.addEventListener("input", updateOutput);
+      copyLinkButton.addEventListener("click", () => copyText(inviteLinkInput.value, "Link"));
+      copyMessageButton.addEventListener("click", () => copyText(messageTextInput.value, "Teks WhatsApp"));
+
+      updateOutput();
+      guestInput.focus();
+    </script>
+  </body>
+</html>

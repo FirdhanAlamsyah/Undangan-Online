@@ -1,0 +1,5 @@
+/api/wishes /.netlify/functions/wishes 200
+/nama /nama/ 301
+/ucapan /ucapan/ 301
+/app/nama /nama/ 301
+/app/nama/* /nama/ 301!

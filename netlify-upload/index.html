@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#fbf5ed" />
+    <title>Wedding Invitation</title>
+    <meta name="description" content="Undangan pernikahan digital" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="stylesheet" href="styles.css?v=35" />
+  </head>
+  <body>
+    <main id="app" class="app-shell" aria-label="Undangan pernikahan">
+      <section class="opening-card" aria-label="Opening undangan">
+        <div class="opening-content">
+          <p class="eyebrow reveal-item reveal-from-top">THE WEDDING OF</p>
+
+          <h1 class="couple-name reveal-item reveal-from-top reveal-delay-1" aria-label="Ira & Yusup">
+            <span>Ira</span>
+            <span>&</span>
+            <span>Yusup</span>
+          </h1>
+
+          <div class="guest-panel reveal-item reveal-from-bottom reveal-delay-2">
+            <p>Kepada YTH</p>
+            <strong data-guest-name>Bapak/Ibu/Saudara/i</strong>
+          </div>
+
+          <a id="openInvite" class="open-button reveal-item reveal-from-bottom reveal-delay-3" href="#invite">
+            Buka Undangan
+          </a>
+        </div>
+      </section>
+
+      <section id="invite" class="invitation-view" aria-hidden="true" aria-label="Isi undangan" tabindex="-1">
+        <div class="slide-progress" aria-hidden="true">
+          <span data-slide-progress></span>
+        </div>
+
+        <div id="slideTrack" class="slide-track">
+          <article class="invite-slide cover-slide is-active" data-section="opening">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content cover-slide-content">
+              <p class="eyebrow reveal-item reveal-from-top">THE WEDDING OF</p>
+              <h2 class="opened-title reveal-item reveal-from-top reveal-delay-1">Ira &amp; Yusup</h2>
+              <div class="opened-guest reveal-item reveal-from-bottom reveal-delay-2">
+                <p>Kepada YTH</p>
+                <strong data-guest-name>Bapak/Ibu/Saudara/i</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="invite-slide salam-slide" data-section="salam">
+            <div class="slide-media">
+              <video
+                class="slide-video"
+                data-src="https://res.cloudinary.com/dva3leybt/video/upload/v1779324577/dreamina-2026-05-21-5617-Create_a_vertical_9_16_wedding_invitatio..._kxz8th.mp4"
+                preload="auto"
+                data-play-on-active="true"
+                muted
+                loop
+                playsinline
+              ></video>
+            </div>
+            <div class="slide-content text-slide-content">
+              <h2>Assalamu'alaikum Wr.Wb.</h2>
+              <p>
+                Tanpa mengurangi rasa hormat, kami bermaksud mengundang
+                Bapak/Ibu/Saudara/i pada acara resepsi pernikahan kami.
+              </p>
+            </div>
+          </article>
+
+          <article class="invite-slide quote-slide" data-section="quote">
+            <div class="slide-media">
+              <video
+                class="slide-video"
+                data-src="https://res.cloudinary.com/dva3leybt/video/upload/v1779288273/dreamina-2026-05-20-6086-Create_a_subtle_elegant_motion_video_fro..._ah9qxi.mp4"
+                preload="auto"
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+            </div>
+            <div class="slide-content quote-slide-content">
+              <p class="quote-symbol">~</p>
+              <p>
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
+                pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung
+                dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
+                kasih dan sayang. Sungguh, pada yang demikian itu benar-benar
+                terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir".
+              </p>
+              <strong>Q.S. Ar Rum: 21</strong>
+            </div>
+          </article>
+
+          <article class="invite-slide couple-slide" data-section="mempelai">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content couple-slide-content">
+              <div class="couple-photo-slot" aria-label="Tempat foto mempelai">
+                <img src="assets/couple-photo-silhouette.png" alt="Siluet Yusup dan Ira" />
+              </div>
+
+              <section class="bridegroom-profile">
+                <h2>Yusup Tojiri</h2>
+                <p>Putra bungsu dari pasangan</p>
+                <p>Bapak Sadit (Alm) &amp; Ibu Marniah</p>
+              </section>
+
+              <p class="couple-divider">&amp;</p>
+
+              <section class="bridegroom-profile">
+                <h2>Ira Febriani</h2>
+                <p>Putri ke-3 dari pasangan</p>
+                <p>Bapak Zaenal Arifin &amp; Ibu Sadiah</p>
+              </section>
+            </div>
+          </article>
+
+          <article class="invite-slide event-slide" data-section="akad">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content event-slide-content">
+              <h2>Akad Nikah</h2>
+              <div class="event-details">
+                <strong>Rabu, 3 Juni 2026</strong>
+                <span>10.00 - 11.30 WIB</span>
+                <p>Warung Ujung Lelang</p>
+              </div>
+
+              <div class="countdown-grid" aria-label="Hitung mundur akad nikah">
+                <div class="countdown-card">
+                  <strong data-countdown-days data-countdown-event="akad">0</strong>
+                  <span>hari</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-hours data-countdown-event="akad">0</strong>
+                  <span>jam</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-minutes data-countdown-event="akad">0</strong>
+                  <span>menit</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-seconds data-countdown-event="akad">0</strong>
+                  <span>detik</span>
+                </div>
+              </div>
+
+              <a
+                class="calendar-button"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad%20Nikah%20Ira%20%26%20Yusup&dates=20260603T030000Z/20260603T043000Z&details=Akad%20Nikah%20Ira%20dan%20Yusup&location=Warung%20Ujung%20Lelang"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Add to Calendar
+              </a>
+            </div>
+          </article>
+
+          <article class="invite-slide event-slide reception-slide" data-section="resepsi">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content event-slide-content">
+              <h2>Resepsi</h2>
+              <div class="event-details">
+                <strong>Rabu, 3 Juni 2026</strong>
+                <span>11.30 - 13.30 WIB</span>
+                <p>Warung Ujung Lelang</p>
+              </div>
+
+              <div class="countdown-grid" aria-label="Hitung mundur resepsi">
+                <div class="countdown-card">
+                  <strong data-countdown-days data-countdown-event="resepsi">0</strong>
+                  <span>hari</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-hours data-countdown-event="resepsi">0</strong>
+                  <span>jam</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-minutes data-countdown-event="resepsi">0</strong>
+                  <span>menit</span>
+                </div>
+                <div class="countdown-card">
+                  <strong data-countdown-seconds data-countdown-event="resepsi">0</strong>
+                  <span>detik</span>
+                </div>
+              </div>
+
+              <a
+                class="calendar-button"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi%20Pernikahan%20Ira%20%26%20Yusup&dates=20260603T043000Z/20260603T063000Z&details=Resepsi%20Pernikahan%20Ira%20dan%20Yusup&location=Warung%20Ujung%20Lelang"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Add to Calendar
+              </a>
+            </div>
+          </article>
+
+          <article class="invite-slide map-slide" data-section="map">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content map-slide-content">
+              <h2>Lokasi Acara</h2>
+              <div class="map-details">
+                <strong>Warung Ujung Lelang</strong>
+                <span>Lokasi Karang Anyar</span>
+              </div>
+
+              <div class="map-frame" aria-label="Peta lokasi acara">
+                <iframe
+                  title="Lokasi Karang Anyar"
+                  src="https://www.google.com/maps?q=-6.0095911,107.1707063&amp;z=16&amp;output=embed"
+                  loading="lazy"
+                  allowfullscreen=""
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+
+              <a
+                class="map-button"
+                href="https://www.google.com/maps/place/Lokasi+karang+anyar/@-6.0002817,107.1730034,3a,75y,136.95h,72.51t/data=!3m10!1e1!3m8!1sTtl0WRC5bFeel0b85vbBjg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D17.485522283765363%26panoid%3DTtl0WRC5bFeel0b85vbBjg%26yaw%3D136.94661661410714!7i16384!8i8192!9m2!1b1!2i39!4m15!1m8!3m7!1s0x2e6a2f00056b298b:0xc8ced9358e88fc1a!2sLokasi+karang+anyar!8m2!3d-6.0095911!4d107.1707063!10e5!16s%2Fg%2F11vr8znjcv!3m5!1s0x2e6a2f00056b298b:0xc8ced9358e88fc1a!8m2!3d-6.0095911!4d107.1707063!16s%2Fg%2F11vr8znjcv?entry=ttu&amp;g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Petunjuk ke Lokasi
+              </a>
+            </div>
+          </article>
+
+          <article class="invite-slide wishes-slide" data-section="rsvp">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content wishes-slide-content">
+              <h2>Kirim Ucapan</h2>
+              <div class="wish-list" data-wish-list aria-label="Daftar ucapan"></div>
+              <button class="wish-open-button" type="button" data-open-wish-modal>
+                Kirim Ucapan
+              </button>
+            </div>
+          </article>
+
+          <article class="invite-slide prayer-slide" data-section="doa">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content prayer-slide-content">
+              <div class="prayer-card">
+                <h2>Doa untuk<br />Pengantin</h2>
+                <p>
+                  "Semoga Allah memberkahi di waktu bahagia dan memberkahimu di
+                  waktu susah, dan mengumpulkan kalian berdua dalam kebaikan"
+                </p>
+                <strong>HR. Abu Daud</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="invite-slide gift-slide" data-section="gift">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content gift-slide-content">
+              <h2>Kirim Hadiah</h2>
+              <p>
+                Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
+              </p>
+              <p>
+                Namun jika Anda ingin memberikan hadiah, kami sediakan fitur berikut:
+              </p>
+              <button class="gift-open-button" type="button" data-open-gift-modal>
+                Kirim Hadiah
+              </button>
+            </div>
+          </article>
+
+          <article class="invite-slide thanks-slide" data-section="terima-kasih">
+            <div class="slide-media">
+              <video class="slide-video" autoplay muted loop playsinline></video>
+            </div>
+            <div class="slide-content thanks-slide-content">
+              <p>
+                Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila
+                Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada
+                kedua mempelai.
+              </p>
+              <p>Hormat kami yang berbahagia.</p>
+              <h2>Ira &amp; Yusup</h2>
+            </div>
+          </article>
+        </div>
+
+        <button class="music-badge is-muted" type="button" aria-label="Nyalakan lagu" aria-pressed="false" data-toggle-music>
+          <span>♪</span>
+        </button>
+
+        <nav class="bottom-nav" aria-label="Navigasi undangan">
+          <div class="nav-track">
+          <button class="nav-item is-active" type="button" data-target="opening">
+            <span class="nav-icon">⌂</span>
+            <span>Opening</span>
+          </button>
+          <button class="nav-item" type="button" data-target="salam">
+            <span class="nav-icon">۞</span>
+            <span>Salam</span>
+          </button>
+          <button class="nav-item" type="button" data-target="quote">
+            <span class="nav-icon">✧</span>
+            <span>Quote</span>
+          </button>
+          <button class="nav-item" type="button" data-target="mempelai">
+            <span class="nav-icon">♡</span>
+            <span>Mempelai</span>
+          </button>
+          <button class="nav-item" type="button" data-target="akad">
+            <span class="nav-icon">▣</span>
+            <span>Akad Nikah</span>
+          </button>
+          <button class="nav-item" type="button" data-target="resepsi">
+            <span class="nav-icon">&#9633;</span>
+            <span>Resepsi</span>
+          </button>
+          <button class="nav-item" type="button" data-target="map">
+            <span class="nav-icon">&#9673;</span>
+            <span>Map</span>
+          </button>
+          <button class="nav-item" type="button" data-target="rsvp">
+            <span class="nav-icon">&#10048;</span>
+            <span>Ucapan</span>
+          </button>
+          <button class="nav-item" type="button" data-target="doa">
+            <span class="nav-icon">&#10086;</span>
+            <span>Doa</span>
+          </button>
+          <button class="nav-item" type="button" data-target="gift">
+            <span class="nav-icon">&#9638;</span>
+            <span>Gift</span>
+          </button>
+          <button class="nav-item" type="button" data-target="terima-kasih">
+            <span class="nav-icon">&#10048;</span>
+            <span>Terima Kasih</span>
+          </button>
+          </div>
+        </nav>
+
+        <div class="wish-modal" data-wish-modal aria-hidden="true">
+          <div class="wish-dialog" role="dialog" aria-modal="true" aria-labelledby="wishDialogTitle">
+            <button class="wish-close" type="button" aria-label="Tutup form ucapan" data-close-wish-modal>
+              &times;
+            </button>
+            <h2 id="wishDialogTitle">Kirim Ucapan</h2>
+            <form class="wish-form" data-wish-form>
+              <label>
+                <span>Nama</span>
+                <input name="name" type="text" autocomplete="name" required />
+              </label>
+              <label>
+                <span>Ucapan</span>
+                <textarea name="message" rows="5" required></textarea>
+              </label>
+              <button type="submit">Kirim</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="gift-modal" data-gift-modal aria-hidden="true">
+          <div class="gift-dialog" role="dialog" aria-modal="true" aria-labelledby="giftDialogTitle">
+            <button class="gift-close" type="button" aria-label="Tutup kirim hadiah" data-close-gift-modal>
+              &times;
+            </button>
+            <h2 id="giftDialogTitle">Kirim Hadiah</h2>
+            <div class="gift-account-list">
+              <article class="gift-account">
+                <img src="assets/seabank-logo.png" alt="SeaBank" />
+                <strong>901551758612</strong>
+                <span>Ira Febriani</span>
+                <button type="button" data-copy-account="901551758612">Copy Rekening</button>
+              </article>
+              <article class="gift-account">
+                <img src="assets/bank-logo-2.png" alt="Bank" />
+                <strong>085881473420</strong>
+                <span>Ira Febriani</span>
+                <button type="button" data-copy-account="085881473420">Copy Rekening</button>
+              </article>
+            </div>
+            <p class="copy-status" data-copy-status aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <audio id="weddingMusic" src="Beautiful in White - Shane Filan.mp3" preload="auto" loop></audio>
+    <script src="app.js?v=35"></script>
+  </body>
+</html>

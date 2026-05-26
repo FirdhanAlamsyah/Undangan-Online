@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbf5ed" />
+    <title>Daftar Ucapan Ira & Yusup</title>
+    <style>
+      :root {
+        --ivory: #fbf5ed;
+        --paper: #fffaf3;
+        --ink: #4f3d36;
+        --muted: #8b7469;
+        --gold: #b78b4f;
+        --green: #6d9068;
+        --shadow: rgba(86, 57, 42, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        color: var(--ink);
+        background:
+          linear-gradient(rgba(255, 246, 236, 0.72), rgba(255, 246, 236, 0.72)),
+          url("../assets/background-desktop.png");
+        background-color: var(--ivory);
+        background-position: center;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+      }
+
+      main {
+        width: min(100%, 760px);
+        margin: 0 auto;
+        padding: 28px 18px 42px;
+      }
+
+      header {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding: 22px;
+        border: 1px solid rgba(183, 139, 79, 0.24);
+        border-radius: 14px;
+        background: rgba(255, 250, 243, 0.94);
+        box-shadow: 0 18px 54px var(--shadow);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      button,
+      a {
+        display: inline-grid;
+        min-height: 42px;
+        place-items: center;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 999px;
+        color: #fff;
+        text-decoration: none;
+        font: 700 13px/1 Arial, sans-serif;
+        cursor: pointer;
+      }
+
+      button {
+        background: linear-gradient(180deg, #a98762, #765847);
+      }
+
+      a {
+        background: linear-gradient(180deg, #7ea274, #5f865f);
+      }
+
+      .status {
+        min-height: 20px;
+        margin: 0 0 14px;
+        color: #675249;
+        font-weight: 700;
+      }
+
+      .wish-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .wish-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px 17px;
+        border: 1px solid rgba(183, 139, 79, 0.2);
+        border-radius: 12px;
+        background: rgba(255, 250, 243, 0.94);
+        box-shadow: 0 12px 34px var(--shadow);
+      }
+
+      .wish-card header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      strong {
+        min-width: 0;
+        color: #4b3832;
+        overflow-wrap: anywhere;
+      }
+
+      time {
+        color: #927e73;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .wish-card p {
+        color: #59433d;
+        font-size: 15px;
+        overflow-wrap: anywhere;
+      }
+
+      @media (max-width: 520px) {
+        main {
+          padding: 18px 14px 32px;
+        }
+
+        .wish-card header {
+          display: grid;
+          justify-content: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Daftar Ucapan</h1>
+        <p>Semua ucapan dari tamu akan muncul di sini setelah API Netlify aktif.</p>
+        <div class="toolbar">
+          <button id="refreshButton" type="button">Refresh</button>
+          <a href="/" target="_blank" rel="noreferrer">Buka Undangan</a>
+        </div>
+      </header>
+
+      <p id="status" class="status" aria-live="polite">Memuat ucapan...</p>
+      <section id="wishList" class="wish-list" aria-label="Daftar ucapan"></section>
+    </main>
+
+    <script>
+      const statusNode = document.querySelector("#status");
+      const wishList = document.querySelector("#wishList");
+      const refreshButton = document.querySelector("#refreshButton");
+
+      function renderWishes(wishes) {
+        wishList.textContent = "";
+
+        if (!wishes.length) {
+          statusNode.textContent = "Belum ada ucapan.";
+          return;
+        }
+
+        statusNode.textContent = `${wishes.length} ucapan tersimpan.`;
+        wishes.forEach((wish) => {
+          const card = document.createElement("article");
+          card.className = "wish-card";
+
+          const header = document.createElement("header");
+          const name = document.createElement("strong");
+          const time = document.createElement("time");
+          const message = document.createElement("p");
+
+          name.textContent = wish.name || "Tamu Undangan";
+          time.textContent = wish.time || "";
+          message.textContent = wish.message || "";
+
+          header.append(name, time);
+          card.append(header, message);
+          wishList.append(card);
+        });
+      }
+
+      async function loadWishes() {
+        statusNode.textContent = "Memuat ucapan...";
+        try {
+          const response = await fetch("/api/wishes", {
+            headers: { Accept: "application/json" },
+            cache: "no-store",
+          });
+
+          if (!response.ok) {
+            throw new Error("API belum aktif.");
+          }
+
+          const data = await response.json();
+          renderWishes(Array.isArray(data.wishes) ? data.wishes : []);
+        } catch {
+          statusNode.textContent = "API ucapan belum aktif. Deploy lewat Netlify CLI/Git agar function ikut terpasang.";
+          wishList.textContent = "";
+        }
+      }
+
+      refreshButton.addEventListener("click", loadWishes);
+      loadWishes();
+    </script>
+  </body>
+</html>
