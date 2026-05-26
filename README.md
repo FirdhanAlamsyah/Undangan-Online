@@ -53,3 +53,5 @@ assets/cover-main.jpg
 ```
 
 Kalau file belum ada, server otomatis pakai fallback SVG supaya browser tidak error 404.
+
+Deploy functions
